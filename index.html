@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IZUMAG & SONS LTD. - Auto Parts Wholesale & Retail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #ff9900;
+            --accent: #25D366;
+            --dark: #333333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #48c3fc 0%, #e4e8f0 50%, #081386 100%);
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #003a7a 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .top-banner {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-weight: 600;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-info :hover {
+            color: #25D366;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: url('https://images.unsplash.com/photo-1563720223880-4d93eef1f1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        /* Category Sections */
+        .category-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .products-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 5px;
+            scroll-behavior: smooth;
+        }
+        
+        .products-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .products-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .products-scroll::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            min-width: 250px;
+            flex: 0 0 auto;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        .product-prices {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+        
+        .retail-price, .wholesale-price {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .retail-price {
+            background: #e9ecef;
+            color: var(--dark);
+        }
+        
+        .wholesale-price {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Terms Section */
+        .terms-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Visit Section */
+        .visit-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .header-content {
+                padding: 0 20px;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .products-scroll {
+                overflow-x: visible;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .product-card {
+                min-width: 200px;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner">
+        DEALERS IN BOTH WHOLESALE AND RETAIL
+    </div>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>IZUMAG <span>& SONS</span></h1>
+            </div>
+            <div class="contact-info">
+                <a href="https://wa.me/2349032377240" target="_blank">
+                    <i class="fab fa-whatsapp"></i> 09032377240
+                </a>
+                <a href="https://wa.me/2347035226358" target="_blank">
+                    <i class="fab fa-whatsapp"></i> 07035226358
+                </a>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="nav-container">
+                <a href="#mobile-products" class="nav-item">Mobile Products</a>
+                <a href="#hardex" class="nav-item">Hardex</a>
+                <a href="#filters" class="nav-item">Filters</a>
+                <a href="#gear-oil" class="nav-item">Gear Oil</a>
+                <a href="#fuel" class="nav-item">Fuel</a>
+                <a href="#engine-oil" class="nav-item">Engine Oil</a>
+                <a href="#ac-gas" class="nav-item">AC Gas</a>
+                <a href="#coolant" class="nav-item">Coolant</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="#terms" class="nav-item">Terms</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h2>Premium Auto Parts & Lubricants</h2>
+            <p>Your trusted partner for quality auto parts and lubricants at wholesale and retail prices</p>
+        </section>
+
+        <!-- Mobile Products Section -->
+        <section id="mobile-products" class="category-section">
+            <div class="category-header">
+                <h2>Mobile Products - All Brands</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="mobile.jpeg" alt="Car Phone Holder" class="product-image">
+                    <h3>mobile super</h3>
+                    <p>mobile super 1000 20w 50 [5 litres]</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦25,000</div>
+                        <div class="wholesale-price">Wholesale: ₦2,800</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="mobile11.jpeg" alt="Car Charger" class="product-image">
+                    <h3>mobile super</h3>
+                    <p>mobile super 2000 5w 30 [5 litres]</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦30,000</div>
+                        <div class="wholesale-price">Wholesale: ₦3,300</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="mobile12.jpeg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>mobile super</h3>
+                    <p>mobile super 3000 5w 40 [5 litres]</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦40,000</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                    </div>
+                     </div>
+                <div class="product-card">
+                    <img src="mobile 1.jpeg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>mobile</h3>
+                    <p>mobile 1 5w 30</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦45,000</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                  </div>
+                <div class="product-card">
+                    <img src="mobile9.webp" alt="Bluetooth Adapter" class="product-image">
+                    <h3>mobile super</h3>
+                    <p>mobile super 1000 20w 50 [4 litres]</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦6,500</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                  </div>
+                <div class="product-card">
+                    <img src="mobile14.jpg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>mobile super</h3>
+                    <p>mobile super 2000 5w 30 [4 litres]</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦6,500</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                  </div>
+                <div class="product-card">
+                    <img src="mobile8.jpeg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>mobile</h3>
+                    <p>mobile 1 5w 30 [5 litres]</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦60,000</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                  </div>
+                <div class="product-card">
+                    <img src="mobile7.jpeg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>Bluetooth Adapter</h3>
+                    <p>Wireless audio transmitter for cars</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦6,500</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                  </div>
+                <div class="product-card">
+                    <img src="mobile9.jpeg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>Bluetooth Adapter</h3>
+                    <p>Wireless audio transmitter for cars</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦6,500</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                  </div>
+                <div class="product-card">
+                    <img src="mobile10.jpeg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>Bluetooth Adapter</h3>
+                    <p>Wireless audio transmitter for cars</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦6,500</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                  </div>
+                <div class="product-card">
+                    <img src="mobile13.jpeg" alt="Bluetooth Adapter" class="product-image">
+                    <h3>Bluetooth Adapter</h3>
+                    <p>Wireless audio transmitter for cars</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦6,500</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                </div>
+                </div>
+                <div class="product-card">
+                    <img src="mobile6.jpeg" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+            </div>
+        </section>
+
+        <!-- Hardex Section -->
+        <section id="hard" class="category-section">
+            <div class="category-header">
+                <h2>Hardex - All Brands</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="hard.jpeg" alt="Hardex Cleaner" class="product-image">
+                    <h3>Hardex Cleaner</h3>
+                    <p>Multi-surface cleaner 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,200</div>
+                        <div class="wholesale-price">Wholesale: ₦950</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="hard4.jpeg" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="hard2.jpeg" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="hard3.webp" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="hard5.jpg" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="hard6.jpeg" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="hard9.jpeg" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="hard8.jpg" alt="Hardex Polish" class="product-image">
+                    <h3>Hardex Polish</h3>
+                    <p>Car polish and wax 500ml</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦1,500</div>
+                        <div class="wholesale-price">Wholesale: ₦1,200</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section id="filters" class="category-section">
+            <div class="category-header">
+                <h2>Filters - Oil & AC Filters</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="oil9.webp" alt="Oil Filter" class="product-image">
+                    <h3>Oil Filter</h3>
+                    <p>Premium oil filter for all vehicles</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦4,500</div>
+                        <div class="wholesale-price">Wholesale: ₦3,600</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="oil.jpeg" alt="AC Filter" class="product-image">
+                    <h3>AC Filter</h3>
+                    <p>Cabin air filter for all models</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦3,800</div>
+                        <div class="wholesale-price">Wholesale: ₦3,000</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="oil5.jpeg" alt="Fuel Filter" class="product-image">
+                    <h3>Fuel Filter</h3>
+                    <p>High efficiency fuel filter</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="oil6.jpeg" alt="Fuel Filter" class="product-image">
+                    <h3>Fuel Filter</h3>
+                    <p>High efficiency fuel filter</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="oil7.jpeg" alt="Fuel Filter" class="product-image">
+                    <h3>Fuel Filter</h3>
+                    <p>High efficiency fuel filter</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="oil8.jpeg" alt="Fuel Filter" class="product-image">
+                    <h3>Fuel Filter</h3>
+                    <p>High efficiency fuel filter</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="oil1.jpeg" alt="Fuel Filter" class="product-image">
+                    <h3>Fuel Filter</h3>
+                    <p>High efficiency fuel filter</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Gear Oil Section -->
+        <section id="gear" class="category-section">
+            <div class="category-header">
+                <h2>Gear Oil - All Brands</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="gear.jpg" alt="Manual Gear Oil" class="product-image">
+                    <h3>Manual Gear Oil</h3>
+                    <p>75W-90 Manual transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦8,500</div>
+                        <div class="wholesale-price">Wholesale: ₦6,800</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="gear1.jpg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="gear2.jpeg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="gear3.jpeg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="gear4.jpg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="gear5.jpeg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="gear6.jpeg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="gear10.jpeg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="gear7.jpeg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div></div>
+                <div class="product-card">
+                    <img src="gear18.jpeg" alt="Automatic Gear Oil" class="product-image">
+                    <h3>Automatic Gear Oil</h3>
+                    <p>ATF+4 Automatic transmission fluid</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦9,200</div>
+                        <div class="wholesale-price">Wholesale: ₦7,300</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Fuel Section -->
+        <section id="fuel" class="category-section">
+            <div class="category-header">
+                <h2>Fuel Additives - All Brands</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="images/fuel_additive1.jpg" alt="Fuel System Cleaner" class="product-image">
+                    <h3>Fuel System Cleaner</h3>
+                    <p>Cleans injectors and fuel system</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦3,200</div>
+                        <div class="wholesale-price">Wholesale: ₦2,500</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/fuel_additive2.jpg" alt="Octane Boost" class="product-image">
+                    <h3>Octane Boost</h3>
+                    <p>Increases fuel octane rating</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦2,800</div>
+                        <div class="wholesale-price">Wholesale: ₦2,200</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engine Oil Section -->
+        <section id="engine-oil" class="category-section">
+            <div class="category-header">
+                <h2>Engine Oil - All Brands</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="images/lee_oil.jpg" alt="LEE Engine Oil" class="product-image">
+                    <h3>LEE POWER EXTRA</h3>
+                    <p>FULLY SYNTHETIC 0W-20</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦12,500</div>
+                        <div class="wholesale-price">Wholesale: ₦10,000</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/mobil_advanced.jpg" alt="Mobil Advanced" class="product-image">
+                    <h3>Mobil Advanced</h3>
+                    <p>FULLY SYNTHETIC 5W-30</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦13,500</div>
+                        <div class="wholesale-price">Wholesale: ₦10,800</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/harty_oil.jpg" alt="Harty Oil" class="product-image">
+                    <h3>HARTY Synthetic</h3>
+                    <p>5W-30 FOR PETROL VEHICLES</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦11,500</div>
+                        <div class="wholesale-price">Wholesale: ₦9,200</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AC Gas Section -->
+        <section id="ac-gas" class="category-section">
+            <div class="category-header">
+                <h2>AC Gas - All Brands</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="ac.jpg" alt="R134a Refrigerant" class="product-image">
+                    <h3>R134a Refrigerant</h3>
+                    <p>12oz can with gauge</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦4,500</div>
+                        <div class="wholesale-price">Wholesale: ₦3,600</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="ac1.jpeg" alt="AC Stop Leak" class="product-image">
+                    <h3>AC Stop Leak</h3>
+                    <p>Seals small leaks in AC system</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div>
+                     </div>
+                <div class="product-card">
+                    <img src="ac2.jpeg" alt="AC Stop Leak" class="product-image">
+                    <h3>AC Stop Leak</h3>
+                    <p>Seals small leaks in AC system</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div>
+                     </div>
+                <div class="product-card">
+                    <img src="ac3.jpeg" alt="AC Stop Leak" class="product-image">
+                    <h3>AC Stop Leak</h3>
+                    <p>Seals small leaks in AC system</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦5,200</div>
+                        <div class="wholesale-price">Wholesale: ₦4,100</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coolant Section -->
+        <section id="coolant" class="category-section">
+            <div class="category-header">
+                <h2>Coolant - All Brands</h2>
+            </div>
+            <div class="products-scroll">
+                <div class="product-card">
+                    <img src="cool.jpeg" alt="Ethylene Glycol Coolant" class="product-image">
+                    <h3>Ethylene Glycol</h3>
+                    <p>Concentrated coolant 1 gallon</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦6,500</div>
+                        <div class="wholesale-price">Wholesale: ₦5,200</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="cool1.jpeg" alt="Propylene Glycol Coolant" class="product-image">
+                    <h3>Propylene Glycol</h3>
+                    <p>Eco-friendly coolant 1 gallon</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦7,200</div>
+                        <div class="wholesale-price">Wholesale: ₦5,700</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="cool2.jpg" alt="Propylene Glycol Coolant" class="product-image">
+                    <h3>Propylene Glycol</h3>
+                    <p>Eco-friendly coolant 1 gallon</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦7,200</div>
+                        <div class="wholesale-price">Wholesale: ₦5,700</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="cool3.jpeg" alt="Propylene Glycol Coolant" class="product-image">
+                    <h3>Propylene Glycol</h3>
+                    <p>Eco-friendly coolant 1 gallon</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦7,200</div>
+                        <div class="wholesale-price">Wholesale: ₦5,700</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="cool4.png" alt="Propylene Glycol Coolant" class="product-image">
+                    <h3>Propylene Glycol</h3>
+                    <p>Eco-friendly coolant 1 gallon</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦7,200</div>
+                        <div class="wholesale-price">Wholesale: ₦5,700</div>
+                    </div>
+                    </div>
+                <div class="product-card">
+                    <img src="cool5.jpeg" alt="Propylene Glycol Coolant" class="product-image">
+                    <h3>Propylene Glycol</h3>
+                    <p>Eco-friendly coolant 1 gallon</p>
+                    <div class="product-prices">
+                        <div class="retail-price">Retail: ₦7,200</div>
+                        <div class="wholesale-price">Wholesale: ₦5,700</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2>About Us</h2>
+            <p>IZUMAG & SONS LTD. is a leading importer and exporter of high-quality motor spare parts and lubricants. Based in Lagos, Nigeria, we specialize in providing genuine parts for all major automotive brands.</p>
+            <p>We deal in both <strong>WHOLESALE and RETAIL</strong>, offering competitive prices for all our products. Whether you're a mechanic, auto shop owner, or individual car owner, we have the products you need at prices you can afford.</p>
+            <p>Under the leadership of our CEO, IZUCHUKWU Udeaja, we've built a reputation for reliability, quality service, and extensive product knowledge in the automotive industry.</p>
+        </section>
+
+        <!-- Terms Section -->
+        <section id="terms" class="terms-section">
+            <h2>Terms & Conditions</h2>
+            <p>At IZUMAG & SONS LTD., we are committed to providing only the best quality products in the market. All our products are 100% original and come with warranty where applicable.</p>
+            <p><strong>Our Promise:</strong></p>
+            <ul>
+                <li>Only genuine, high-quality products</li>
+                <li>Competitive pricing for both wholesale and retail customers</li>
+                <li>Professional customer service</li>
+                <li>Timely delivery of orders</li>
+                <li>Quality assurance on all products</li>
+            </ul>
+            <p>We stand behind the quality of our products and are committed to customer satisfaction. If you receive a product that doesn't meet your expectations, please contact us immediately.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>Contact Us</h2>
+            <p>Have questions about our products or want to place an order?</p>
+            <p>Reach out to us directly on WhatsApp:</p>
+            <a href="https://wa.me/2349032377240" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </section>
+
+        <!-- Visit Section -->
+        <section class="visit-section">
+            <h2>Visit Us</h2>
+            <p>You can also visit us at our head office:</p>
+            <div class="address">
+                <p><strong>Shop A4 & B4, 116 Ogidan Shopping Complex</strong></p>
+                <p>Odo B/Stop, Ladipo, Mushin, Lagos</p>
+            </div>
+             <img src="zu.jpg" alt="Car Phone Holder" class="product-image">
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 IZUMAG & SONS LTD. All Rights Reserved.</p>
+            <p>DEALERS IN BOTH WHOLESALE AND RETAIL</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
